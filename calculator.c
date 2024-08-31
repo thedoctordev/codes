@@ -1,4 +1,3 @@
-#include <math.h>
 #include "libs/ascii_matrix.c"
 #include "libs/data_structures.c"
 
@@ -8,6 +7,7 @@
 int isNumber(char character); // Verifica se o caractere equivale a um Número Inteiro
 int toInteger(char character); // Converte um caractere em Número Inteiro
 int precedence(char operator); // Verifica a ordem de precedência de um operador
+int power(int base, int expoent);
 int calculate();
 
 int operation = 0; // Flag que controla as operações
@@ -137,6 +137,16 @@ int precedence(char operator)
     else return -1;
 }
 
+int power(int base, int expoent)
+{
+    int result = 1;
+    for (int i = 0; i < expoent; i++)
+    {
+        result = result * base;
+    }
+    return result;
+}
+
 int calculate()
 {
     int result = 0;
@@ -147,7 +157,7 @@ int calculate()
     unstack('i');
     int operand_1 = new_int;
 
-    if(operator == '^') result = (int)pow(operand_1, operand_2);
+    if(operator == '^') result = power(operand_1, operand_2);
     else if(operator == 'x' || operator =='*') result = operand_1 * operand_2;
     else if(operator == '/') result = operand_1 / operand_2;
     else if(operator == '+') result = operand_1 + operand_2;

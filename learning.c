@@ -1,9 +1,7 @@
 #include <stdio.h>
-#include "libs/ascii_matrix.c"
+#include <math.h>
 
 int main() {
-   printf("Esperando por 2 segundos...\n");
-   delay(2);
-   printf("Continuando a execucao do programa.\n");
-   return 0;
+   double res = sqrt(2);
+   printf("%.2lf\n", pow(res, 2.0));
 }
