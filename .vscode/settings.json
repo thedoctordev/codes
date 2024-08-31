@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.tcc": "c",
+        "functional": "c",
+        "limits": "c",
+        "type_traits": "c",
+        "unistd.h": "c",
+        "windows.h": "c"
+    }
+}
