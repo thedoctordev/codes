@@ -1,3 +1,7 @@
-.vscode/*
-*.exe
+.vscode/
+.gitignore
 learning.c
+learning.exe
+calculator.exe
+learning
+calculator

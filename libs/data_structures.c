@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "data_structures.h"
 
 
@@ -176,4 +178,89 @@ void printStack()
     printf("\n");
     for(int i = 0; i < LENGTH + 63; i++) printf("-");
     printf("\n");
+}
+
+/* Insere um novo nó em uma árvore
+ * @param tree: Árvore a qua o nó será inserido
+ * @param content: Conteúdo do novo nó 
+ */
+void insertNodle(Tree *tree, int content)
+{
+    // Caso ainda não exista nenhum nó na árvore
+    if (tree->root == NULL)
+    {
+        Nodle *new = (Nodle*)malloc(sizeof(Nodle));
+        new->content = content;
+        new->left = NULL;
+        new->right = NULL;
+        tree->root = new;
+    }
+    else //  
+    {
+        if (content < tree->root->content)
+            insertLeft(tree->root, content);
+        else
+            insertRight(tree->root, content);
+    }
+}
+
+/* Insere um nó a esquerda
+ * @param nodle: Nó
+ * @param content: Conteúdo a ser inserido
+ */
+void insertLeft(Nodle *nodle, int content)
+{
+    // Se não houver um nó a esquerda 
+    if (nodle->left == NULL)
+    {
+        Nodle *new = (Nodle*)malloc(sizeof(Nodle));
+        new->content = content;
+        new->left = NULL;
+        new->right = NULL;
+        nodle->left = new;
+    }
+    else // Caso haja um nó a esquerda
+    {
+        if (content < nodle->left->content)
+            insertLeft(nodle->left, content);
+        else
+            insertRight(nodle->left, content);
+    }
+}
+
+/* Insere um nó a direita
+ * @param nodle: Nó
+ * @param content: Conteúdo a ser inserido
+ */
+void insertRight(Nodle *nodle, int content)
+{
+    // Se não houver um nó a direita 
+    if (nodle->right == NULL)
+    {
+        Nodle *new = (Nodle*)malloc(sizeof(Nodle));
+        new->content = content;
+        new->left = NULL;
+        new->right = NULL;
+        nodle->right = new;
+    }
+    else // Caso haja um nó a direita
+    {
+        if (content > nodle->right->content)
+            insertRight(nodle->right, content);
+        else
+            insertLeft(nodle->right, content);
+    }
+}
+
+/* Imprime a árvore de forma ordenada
+ * @param root: Raiz da árvore a ser impressa
+ */
+void printTree(Nodle *root)
+{
+    if (root != NULL)
+    {
+        printTree(root->left);
+        printf("%d\n", root->content);
+        printTree(root->right);
+    }
 }
